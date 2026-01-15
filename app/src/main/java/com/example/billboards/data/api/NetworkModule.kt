@@ -1,5 +1,6 @@
 package com.example.billboards.data.api
 
+import com.example.billboards.data.api.mock.MockInterceptor
 import com.example.billboards.data.storage.TokenStore
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,6 +28,7 @@ object NetworkModule {
         }
 
         val client = OkHttpClient.Builder()
+            .addInterceptor(MockInterceptor())
             .addInterceptor(authInterceptor)
             .addInterceptor(logging)
             .build()

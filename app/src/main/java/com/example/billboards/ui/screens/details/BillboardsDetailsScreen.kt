@@ -88,21 +88,21 @@ fun BillboardDetailsScreen(
 
                             details.resolution?.let {
                                 Spacer(Modifier.height(4.dp))
-                                Text("Rezoluție: $it", style = MaterialTheme.typography.bodySmall)
+                                Text("Resolution: $it", style = MaterialTheme.typography.bodySmall)
                             }
                             details.screenSizeInInches?.let {
                                 Spacer(Modifier.height(2.dp))
-                                Text("Diagonală: ${it}\"", style = MaterialTheme.typography.bodySmall)
+                                Text("Diagonal: ${it}\"", style = MaterialTheme.typography.bodySmall)
                             }
                         }
 
                         OutlinedButton(onClick = onBack) {
-                            Text("Înapoi")
+                            Text("Back")
                         }
                     }
 
                     Spacer(Modifier.height(8.dp))
-                    Text("Sloturi disponibile", style = MaterialTheme.typography.titleMedium)
+                    Text("Available slots", style = MaterialTheme.typography.titleMedium)
                 }
 
                 items(details.availableSlots) { slot ->
@@ -118,13 +118,13 @@ fun BillboardDetailsScreen(
                                 )
                                 Spacer(Modifier.height(4.dp))
                                 Text(
-                                    text = "Preț: ${slot.priceRon} RON",
+                                    text = "Price: ${slot.priceRon} RON",
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
 
                             Button(onClick = { onStartUpload(slot.start, slot.end) }) {
-                                Text("Alege poză")
+                                Text("Choose a photo")
                             }
                         }
                     }
@@ -132,7 +132,7 @@ fun BillboardDetailsScreen(
 
                 item {
                     Spacer(Modifier.height(8.dp))
-                    Text("Campanii existente", style = MaterialTheme.typography.titleMedium)
+                    Text("Campaigns", style = MaterialTheme.typography.titleMedium)
                 }
 
                 items(s.data.images) { img ->
@@ -140,7 +140,7 @@ fun BillboardDetailsScreen(
                         Column(Modifier.padding(12.dp)) {
                             AsyncImage(
                                 model = img.imageUrl,
-                                contentDescription = "Imagine campanie",
+                                contentDescription = "Campaign image",
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(180.dp)
@@ -156,7 +156,7 @@ fun BillboardDetailsScreen(
                 if (s.data.images.isEmpty()) {
                     item {
                         Text(
-                            "Nu există campanii programate (sau API-ul mock întoarce listă goală).",
+                            "No scheduled campaigns.",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }

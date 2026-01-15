@@ -59,7 +59,7 @@ fun BillboardsScreen(
             ) {
                 item {
                     Text(
-                        text = "Panouri publicitare (București)",
+                        text = "Billboards (Bucharest)",
                         style = MaterialTheme.typography.headlineSmall
                     )
                     Spacer(Modifier.height(8.dp))

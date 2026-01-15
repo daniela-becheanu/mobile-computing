@@ -19,16 +19,13 @@ class BillboardsViewModel(
     fun load() {
         viewModelScope.launch {
             _state.value = UiState.Loading
-
-            runCatching { repo.getBillboards() }
-                .onSuccess { list ->
-                    // Filtrăm București / Bucharest
-                    val filtered = list.filter { it.city.equals("Bucharest", ignoreCase = true) }
-                    _state.value = UiState.Success(filtered)
-                }
-                .onFailure {
-                    _state.value = UiState.Error(it.message ?: "Eroare necunoscută")
-                }
+            try {
+                val list = repo.getBillboards()
+                val filtered = list.filter { it.city.equals("Bucharest", ignoreCase = true) }
+                _state.value = UiState.Success(filtered)
+            } catch (t: Throwable) {
+                _state.value = UiState.Error(t.message ?: "Failed to load billboards")
+            }
         }
     }
 }

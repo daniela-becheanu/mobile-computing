@@ -33,10 +33,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ✅ IMPORTANT: pune aici baseUrl-ul mock-ului tău
-        // Exemplu: "https://xxxx.mockapi.io/api/v1/"
-        // Dacă e server local pe laptop: "http://10.0.2.2:3000/"
-        val baseUrl = "https://YOUR_MOCK_BASE_URL/"
+        val baseUrl = "http://localhost/"
 
         val tokenStore = TokenStore(applicationContext)
         val api = NetworkModule.createApi(baseUrl = baseUrl, tokenStore = tokenStore)

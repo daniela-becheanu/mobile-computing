@@ -32,14 +32,13 @@ class BillboardDetailsViewModel(
     fun load() {
         viewModelScope.launch {
             _state.value = UiState.Loading
-
-            runCatching {
+            try {
                 val details = repo.getBillboardDetails(billboardId)
                 val images = repo.getBillboardImages(billboardId)
-                DetailsScreenModel(details = details, images = images)
+                _state.value = UiState.Success(DetailsScreenModel(details = details, images = images))
+            } catch (t: Throwable) {
+                _state.value = UiState.Error(t.message ?: "Failed to load billboard details")
             }
-                .onSuccess { _state.value = UiState.Success(it) }
-                .onFailure { _state.value = UiState.Error(it.message ?: "Eroare la încărcare") }
         }
     }
 
